@@ -1,0 +1,6 @@
+*node_modules
+/desafios
+tmp/*
+!tmp/.gitkeep
+./yarn.lock
+./package.lock.json

@@ -1,0 +1,11 @@
+GET HTTP://localhost:3333/appointments
+
+###
+
+POST HTTP://localhost:3333/appointments
+Content-Type: application/json
+
+{
+	"provider_id" : "dacb2e72-5e84-470c-bb30-d59c4a9bfe06",
+	"date" : "{% now 'iso-8601', '' %}"
+}
