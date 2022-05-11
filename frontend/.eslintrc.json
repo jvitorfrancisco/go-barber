@@ -30,8 +30,10 @@
   ],
   "rules": {
     "no-use-before-define": "off",
+    "no-unused-expressions": "off",
     "@typescript-eslint/no-unused-expressions": "warn",
     "@typescript-eslint/ban-types": "off",
+    "camelcase": "off",
     "prettier/prettier": "error",
     "react/prop-types": "off",
     "react/jsx-props-no-spreading": "off",
@@ -46,6 +48,7 @@
       }
     ],
     "import/prefer-default-export": "off",
+    "import/no-duplicates": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

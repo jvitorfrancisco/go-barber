@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 
 import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
@@ -10,13 +11,21 @@ import '@shared/container';
 
 import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
+import { errors } from 'celebrate';
+import ratelimit from './middlewares/rateLimiter';
 
 const app = express();
 
-app.use(cors());
+app.use((req, res, next) => {
+  next();
+}, cors());
+
+app.use(ratelimit);
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(routes);
+
+app.use(errors());
 
 app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
   if (err instanceof AppError) {
@@ -25,8 +34,6 @@ app.use((err: Error, req: Request, res: Response, _: NextFunction) => {
       message: err.message,
     });
   }
-
-  console.error(err);
 
   return res.status(500).json({
     status: 'error',

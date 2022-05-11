@@ -34,7 +34,7 @@ export class UpdateAppointmentProviderToProviderId1599181773630
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey('appointments', 'AppointmentProvider');
 
-    await queryRunner.dropColumn('appointments', 'proovider_id');
+    await queryRunner.dropColumn('appointments', 'provider_id');
 
     await queryRunner.addColumn(
       'appointments',
